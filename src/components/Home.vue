@@ -2,24 +2,29 @@
   <div id="main" class="hello">
     <h1>{{ msg }}</h1>
     <ul>
-      <li v-for="item in people" :key="item.name"> {{ item.name }}</li>
+      <li v-for="item in artists" :key="item.name"> {{ item.name }}</li>
     </ul>
   </div>
 
 </template>
 
 <script>
+
+import getArtists from './api'
+
 export default {
   name: 'Home',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      people: [
-        { name: 'humberto' },
-        { name: 'jose' },
-        { name: 'roberto' }
-      ]
+      artists: []
     }
+  },
+  mounted: function() {
+    const self = this;
+    getArtists().then( function(response) {
+      self.artists = response;
+    });
   }
 }
 </script>
