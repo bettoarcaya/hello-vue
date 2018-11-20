@@ -1,0 +1,12 @@
+import config from './config'
+
+
+const API_KEY = config.apiKey;
+const URL = `http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=venezuela&api_key=${API_KEY}&format=json`;
+
+
+function getArtists(){
+    fetch(URL)
+        .then( response => response.json )
+        .then( json => json.topartist.artists );
+}
