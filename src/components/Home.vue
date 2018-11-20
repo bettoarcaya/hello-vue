@@ -1,6 +1,9 @@
 <template>
   <div id="main" class="hello">
     <h1>{{ msg }}</h1>
+    <ul>
+      <li v-for="item in people" :key="item.name"> {{ item.name }}</li>
+    </ul>
   </div>
 
 </template>
@@ -11,7 +14,11 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      people: ['Hola', 'chao']
+      people: [
+        { name: 'humberto' },
+        { name: 'jose' },
+        { name: 'roberto' }
+      ]
     }
   }
 }
