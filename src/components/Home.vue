@@ -1,30 +1,26 @@
 <template>
   <div id="main" class="hello">
-    <h1>{{ msg }}</h1>
     <ul>
       <li v-for="item in artists" :key="item.name"> {{ item.name }}</li>
     </ul>
   </div>
-
 </template>
-
 <script>
-
-import getArtists from './api'
-
+import getArtists from '@/api'
 export default {
+  /* eslint-disable */
   name: 'Home',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
       artists: []
     }
   },
   mounted: function() {
-    const self = this;
+    const self = this
+    
     getArtists().then( function(response) {
-      self.artists = response;
-    });
+      self.artists = response
+    })
   }
 }
 </script>
