@@ -1,5 +1,10 @@
 <template>
   <div id="main" class="hello">
+    <select v-model="country">
+      <option v-for="count in countriesList" :key="count.name" :value="count.value">
+        {{ count.name }}
+      </option>
+    </select>
     <div class="cotainer">
       <div class="row">
         <div class="col-md-3" v-for="item in artists" :key="item.name">
@@ -19,15 +24,31 @@ export default {
   name: 'Home',
   data () {
     return {
-      artists: []
+      artists: [],
+      countriesList: [
+        {name: 'Venezuela', value: 'venezuela'},
+        {name: 'Colombia', value: 'colombia'},
+        {name: 'Argentina', value: 'argentina'}
+      ],
+      country: 'Venezuela'
     }
   },
-  mounted: function() {
-    const self = this
-    
-    getArtists().then( function(response) {
-      self.artists = response
-    })
+  methods: {
+    refreshArtists (){
+      const self = this
+      console.log(this.country)
+      getArtists(this.country).then( function(response) {
+        self.artists = response
+      })
+    }
+  },
+  mounted () {
+    this.refreshArtists();
+  },
+  watch: {
+    country (){
+      this.refreshArtists();
+    }
   }
 }
 </script>
