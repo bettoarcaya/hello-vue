@@ -1,8 +1,15 @@
 <template>
   <div id="main" class="hello">
-    <ul>
-      <li v-for="item in artists" :key="item.name"> {{ item.name }}</li>
-    </ul>
+    <div class="cotainer">
+      <div class="row">
+        <div class="col-md-3" v-for="item in artists" :key="item.name">
+          <h2>
+            <a :href="item.url" target="_blank">{{ item.name }}</a>
+          </h2>
+          <img :src="item.image[2]['#text']">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
