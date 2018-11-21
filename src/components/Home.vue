@@ -16,6 +16,7 @@
     </div>
     <div class="container">
       <div class="row">
+        <spinner v-show="loading"></spinner>
         <div class="col-md-3" v-for="item in artists" :key="item.name">
           <h2>
             <a :href="item.url" target="_blank">{{ item.name }}</a>
@@ -28,6 +29,7 @@
 </template>
 <script>
 import getArtists from '@/api'
+import Spinner from './Spinner.vue'
 export default {
   /* eslint-disable */
   name: 'Home',
@@ -39,14 +41,20 @@ export default {
         {name: 'Colombia', value: 'colombia'},
         {name: 'Argentina', value: 'argentina'}
       ],
-      country: 'Venezuela'
+      country: 'Venezuela',
+      loading: true
     }
+  },
+  components:{
+    Spinner
   },
   methods: {
     refreshArtists (){
       const self = this
-      console.log(this.country)
+      this.loading = true
+      this.artists = []
       getArtists(this.country).then( function(response) {
+        self.loading = false
         self.artists = response
       })
     }
