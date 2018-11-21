@@ -1,11 +1,20 @@
 <template>
   <div id="main" class="hello">
-    <select v-model="country">
-      <option v-for="count in countriesList" :key="count.name" :value="count.value">
-        {{ count.name }}
-      </option>
-    </select>
-    <div class="cotainer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="select-group mb-3 mb-md-0">
+            <span class="select-text">Pais</span>
+            <select class="custom-select text-left" v-model="country">
+              <option v-for="count in countriesList" :key="count.name" :value="count.value">
+                {{ count.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
       <div class="row">
         <div class="col-md-3" v-for="item in artists" :key="item.name">
           <h2>
